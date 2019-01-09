@@ -12,12 +12,12 @@ h1,h2,h3,h4 {
 
 
 a {
-  color: #545454;
+  color: #fff;
 }
 
 .header {
   background: #fff;
-  color: #1363fb;
+  color: #545454;
   height: 500px;
   padding: 30px 30px 30px;
 }
