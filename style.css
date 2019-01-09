@@ -1,8 +1,8 @@
 
 html, body {
-  padding: 10%, 25%;
+  padding:
   margin: 0;
-  background-color: #ffd1dc;
+  background-color: #ffebef;
   font-family: 'Avenir Next', 'arial', 'sans';
 }
 
@@ -12,7 +12,7 @@ h1,h2,h3,h4 {
 
 
 a {
-  color: #222;
+  color: #545454;
 }
 
 .header {
