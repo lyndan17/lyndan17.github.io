@@ -16,9 +16,7 @@ a {
 }
 
 .header {
-  background: #fff;
   color: #545454;
-  height: 500px;
   padding: 30px 30px 30px;
 }
 
@@ -29,8 +27,8 @@ a {
 .assignment {
   font-size: 12px;
   line-height: 24px;
-  font-family: 'helvetica', 'arial', 'sans';
-  padding: 20px 20px 20px 30px;
+  font-family: 'Avenir Next', 'arial', 'sans';
+  padding: 20px 20px 30px;
   width: 250px;
   height: 350px;
   float: left;
