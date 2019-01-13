@@ -1,6 +1,6 @@
 
 html, body {
-  padding: 0;
+  padding: 15%;
   margin: 0;
   background-color: #ffebef;
   font-family: 'Avenir Next', 'arial', 'sans';
@@ -18,7 +18,7 @@ a {
 .header {
   background: #fff;
   color: #545454;
-  height: 50px;
+  height: 75%;
   padding: 30px 30px 30px;
 }
 
