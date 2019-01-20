@@ -1,25 +1,98 @@
-<!DOCTYPE html> 
-<html> 
-    <head> 
-        <meta charset="utf-8"> 
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, maximum-scale=1.0" />
 
-        <title>Example Student's HCDE 439 Physical Computing Page!</title> 
+        <title>Lynda's HCDE 439 Physical Computing Page!</title>
 
         <link href="style.css" media="screen" rel="stylesheet" type="text/css" />
 
-    </head> 
-    <body> 
+      </head>
+      <body>
 
-        <div class="header">
-            <h1>Example Student's Assignment 2!</h1>
-            <p>
-            <img src="red-panda.jpg" width=400></a>
-            </p>
-            <p>
-            Here is all the documentation for assignment 2!
-            </p>
-        </div>
-        
-    </body>
-</html>
+          <div class="header">
+              <h1>Assignment 2: Fade</h1>
+              <h4>Overview</h4>
+              <p>
+              Implement a schematic, circuit, and code that uses LEDs, a button, a for-loop, digitalWrite(), digitalRead(), and analogWrite().
+              </p>
+              <p>
+
+              </p>
+              <p>
+              A snippet of the schematic:
+              </p>
+              <p>
+              <img src="REPLACE" height=200></a>
+              </p>
+              <p>
+              <img src="A2_Calc1.jpg" height=125></a> <img src="A2_Calc2.jpg" height=125></a>
+              </p>
+              <p>
+              When assuming that LEDs are run at 20 mA, it is calculated that the white, blue, and red LED need 85, 85, and 160 Ohms of resistance, respectively. I used the 220 resistor for red LED, and 100 resistor for the blue and white LED.
+              </p>
+              <p>
+
+              </p>
+              <p>
+              What the circuit looks like:
+              </p>
+              <p>
+              <img src="A2_Circuit.jpg" width=400></a>
+              </p>
+              <p>
+
+              </p>
+              <p>
+              Here's my code:
+              </p>
+              <pre>
+              <code>
+                const int buttonPin = 2;        // the number of the pushbutton pin
+                int buttonState = 0;        // variable for reading the pushbutton status
+
+                void setup() {
+                  for (int thisPin = 9; thisPin < 12; thisPin++) {    // use a for loop to initialize pin 9 - 11 as output
+                    pinMode(thisPin, OUTPUT);
+                  }
+                  // initialize the pushbutton pin as an input
+                  pinMode(buttonPin, INPUT);
+                }
+
+                void loop() {
+                  buttonState = digitalRead(buttonPin);       // read the state of the pushbutton value
+                  int thisPin = 9;        // initialize start sequence at pin 9
+                  if (buttonState == HIGH) {        // check if pushbutton is pressed; if it is, buttonState is HIGH
+                    for (int thisPin = 9; thisPin < 12; thisPin++) {        // loop from the lowest pin to the highest:
+                      for (int fadeValue = 0 ; fadeValue <= 250; fadeValue += 25) {       // fade in from min to max in increments of 25 points
+                          analogWrite(thisPin, fadeValue);        // sets the value (range from 0 to 250):
+                          // wait for 30 milliseconds to see the dimming effect
+                          delay(30);
+                      }
+                      for (int fadeValue = 250 ; fadeValue >= 0; fadeValue -= 25) {       // fade out from max to min in increments of 25 points
+                          // sets the value (range from 0 to 250):
+                          analogWrite(thisPin, fadeValue);
+                          // wait for 30 milliseconds to see the dimming effect
+                          delay(30);
+                      }
+                    }
+                  } else {        // check if pushbutton is pressed; if it is not, buttonState is LOW and turn off LED
+                  digitalWrite(thisPin, LOW);
+                  }
+                }
+            </code>
+          </pre>
+          <p>
+
+          </p>
+              <p>
+              See it in action:
+              </p>
+              <p>
+              <img src="A2_Fade.gif" width=400></a>
+              </p>
+
+            </div>
+      </body>
+  </html>
