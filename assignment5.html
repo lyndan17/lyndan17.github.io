@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, maximum-scale=1.0" />
+
+        <title>Lynda's HCDE 439 Physical Computing Page!</title>
+
+        <link href="style.css" media="screen" rel="stylesheet" type="text/css" />
+
+      </head>
+      <body>
+
+          <div class="header">
+              <h1>Assignment 5: Motors</h1>
+              <h4>Overview</h4>
+              <p>
+                Create a schematic, circuit, and code that uses a joystick to control a motor. Write the motor's position to the Serial port and show the output of the serial port monitor.
+              </p>
+              <p>
+              A snippet of the schematic:
+              </p>
+              <p>
+              <img src="A4_Scheme.jpg" height=400></a>
+              <img src="A4_Calc.jpg" height=400></a>
+              </p>
+              <p>
+                  ADD CALCS HERE
+              </p>
+              <p>
+
+              </p>
+              <p>
+              What the circuit looks like:
+              </p>
+              <p>
+              <img src="A5_Circuit.jpg" width=400></a>
+              </p>
+              <p>
+              The servo motor is connected to pin 9 and ground. The joystick's x and y value is attached to A0 and A1, respectively. The arduino provides 5V of power to the breadboard that powers the joystick and motor.
+              </p>
+              <p>
+              Here's my code:
+              </p>
+              <pre>
+              <code>
+
+        int x = A0;   // output pin that the x value of joystick is attached to
+        int y = A1;   // output pin that the y value of joystick is attached to
+        int xval = 0;   // initialize x value
+        int yval = 0;   // initialize y value
+        int angle = 0;    // initialize angle for servo motor
+
+        #include <Servo.h>    // pull code from servo library
+        Servo myServo;    // use that code in my servo
+
+        void setup() {
+          Serial.begin(9600);   // initialize serial communications at 9600 bps
+          myServo.attach(9);    // servo motor is attached to pin 9
+        }
+
+        void loop() {
+          xval = analogRead(x);   // read analog of x value
+          yval = analogRead(y);   // read analog of y value
+
+          Serial.print("x = ");   // write to serial monitor x value
+          Serial.println(xval);
+          Serial.print("y = ");   // write to serial y value
+          Serial.println(yval);
+          Serial.println();   // line break
+
+          angle = map(xval, 0, 1023, 0, 180);   // map the X value read in to an angle on the servo motor
+          myServo.write(angle);   // change servo motor angle
+          delay(15);    // wait for servo to respond
+        }
+               </code>
+          </pre>
+          <p>
+
+          </p>
+              <p>
+              See it in action:
+              </p>
+              <p>
+              <img src="A5_Motor.gif" height=500></a>
+              </p>
+            </div>
+      </body>
+  </html>
