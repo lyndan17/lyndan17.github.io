@@ -48,34 +48,14 @@
               </p>
               <pre>
               <code>
-
-        int x = A0;   // output pin that the x value of joystick is attached to
-        int y = A1;   // output pin that the y value of joystick is attached to
-        int xval = 0;   // initialize x value
-        int yval = 0;   // initialize y value
-        int angle = 0;    // initialize angle for servo motor
-
-        #include &lt;Servo. h&gt;    // pull code from servo library
-        Servo myServo;    // use that code in my servo
-
         void setup() {
           Serial.begin(9600);   // initialize serial communications at 9600 bps
-          myServo.attach(9);    // servo motor is attached to pin 9
         }
 
         void loop() {
-          xval = analogRead(x);   // read analog of x value
-          yval = analogRead(y);   // read analog of y value
-
-          Serial.print("x = ");   // write to serial monitor x value
-          Serial.println(xval);
-          Serial.print("y = ");   // write to serial y value
-          Serial.println(yval);
-          Serial.println();   // line break
-
-          angle = map(xval, 0, 1023, 0, 180);   // map the X value read in to an angle on the servo motor
-          myServo.write(angle);   // change servo motor angle
-          delay(15);    // wait for servo to respond
+          int button = digitalRead(2);    // reads in pin status from pin 2
+          Serial.println(button);   // Displays 0 if off, 1 if on to Serial Monitor
+          delay(50);    // delay to display
         }
                </code>
           </pre>
