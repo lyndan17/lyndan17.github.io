@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, maximum-scale=1.0" />
+
+        <title>Lynda's HCDE 439 Physical Computing Page!</title>
+
+        <link href="style.css" media="screen" rel="stylesheet" type="text/css" />
+
+      </head>
+      <body>
+
+          <div class="header">
+              <h1>Final Assignment: Tick Tock on the Clock</h1>
+              <h4>Overview</h4>
+              <p>
+                The final project needs to connect some intput to some output through digital logic, and must be integrated into a prototype.
+              </p>
+              <h4>The Concept</h4>
+              <p>
+              For my final project, I built and implemented a small timer aimed to be used in the kitchen when cooking. Given various scenarios, such as baking cookies, boiling eggs, or cooking pasta, this simple and friendly timer is meant to alert users of when their process is completed.
+              </p>
+              <p>
+              <img src="A8_Scheme.jpg" height=400></a> /* PICTURE OF FINAL CONCEPT */
+              </p>
+
+              <p>
+              Users simply program the minutes and seconds needed for the timer to keep track of using Arduino on the computer. The LCD screen reads “Good eating in:” followed by a countdown timer display.
+              </p>
+              <img src="A8_Scheme.jpg" height=400></a> /* PICTURE OF COUNTDOWN*/
+
+              <p>
+              Once time runs out, the buzzer on the device is triggered and can be turned off using the button.
+              </p>
+              <img src="A8_Scheme.jpg" height=400></a> /* PICTURE OF SPEAKER*/
+              <img src="A8_Scheme.jpg" height=400></a> /* PICTURE OF BUTTON*/
+
+              <h4>Technical Implementation</h4>
+              <p>
+              A snippet of the schematic:
+              </p>
+
+              <img src="A8_Scheme.jpg" height=400></a> /* PICTURE OF Scheme*/
+
+              <p>
+              What the circuit looks like:
+              </p>
+              <img src="Final_Circuit.png" height=400></a> /* PICTURE OF circuit*/
+
+              <p>
+              My calculations:
+              </p>
+              <img src="A8_Scheme.jpg" height=400></a> /* PICTURE OF Calc*/
+              <p>
+              I will talk about calculations here!!!!
+              </p>
+
+              <p>
+              Here's my arduino code:
+              </p>
+              <pre>
+              <code>
+
+        #include &lt;LiquidCrystal.h&gt;
+
+        const int rs = 12, en = 11, d4 = 5, d5 = 4, d6 = 3, d7 = 2;   // Initializing pins from arduino to match names of legs from LCD screen
+        LiquidCrystal lcd(rs, en, d4, d5, d6, d7);    // Initializing
+
+        int minutes = 0;    // Initializing minutes and setting it to 0
+        int seconds = 5;    // Initializing seconds and setting it to 5
+        char timeline[16];    // Creating a string that will be written in the LCD
+
+        int buzzer = 10;    // Initializing the buzzer to pin 10
+        int pitch = 700;    // Initializing the pitch of the buzzer and setting it to 700
+
+        const int buttonPin = 7;    // Initializing button to pin 7
+
+
+        void setup() {
+          lcd.begin(16, 2);   // Establishing the size of our LCD screen
+          lcd.print("Good eating in:");   // Printing to top row of LCD screen
+          pinMode(buzzer, OUTPUT);    // Initializing Buzzer as output
+          pinMode(buttonPin, INPUT);    // Initializing button as input
+
+        }
+
+        void loop() {
+          int buttonState = digitalRead(buttonPin);   // Read button state and call it buttonState
+
+          if (minutes > 0 || seconds > 0) {   //
+            lcd.setCursor(0, 1);
+            sprintf(timeline,"%0.2d mins %0.2d secs", minutes, seconds);    // Function written by taking the string "--mins --secs" and updating it with the seconds and minutes
+            lcd.print(timeline);    // Displaying the updated string on the LCD screen
+
+            delay(1000);    // Delaying for 1 second to emulate 1 second passing by
+            seconds--;    // Counting down by 1 after 1 second
+
+            if (seconds == -1) {    // When seconds gets to 0
+              seconds = 59;   // Reset values of seconds to 59
+              minutes --;   // Countdown value of minutes by 1
+            }
+
+            if (minutes == 0 & seconds == 0) {    // When minutes and seconds are at 0, time's up!
+              lcd.begin(16, 2);   // Establishing the size of our LCD screen
+              lcd.setCursor(1, 2);    // set cursor to second row and 2nd indent
+              lcd.print("FOOD IS READY!");    // Print text
+
+              tone (buzzer, pitch);   // Play buzzer sound
+            }
+          }
+
+          if (buttonState == HIGH) {   // When button is pressed
+              lcd.begin(16, 2);   // Establishing the size of our LCD screen
+              lcd.print(" YUM! YUM! YUM!");   // Print
+              lcd.setCursor(5, 2);    // Set cursor to 6th indent and second row
+              lcd.print("Enjoy!");    // Print
+              noTone(buzzer);   // Stop buzzer
+           }
+
+
+        }
+               </code>
+          </pre>
+
+          <h4>Build of Materials</h4>
+          <p>
+          For this project, I used the following materials:
+          </p>
+          <img src="Final_Materials.jpg" height=400></a> /* PICTURE OF Calc*/
+
+          <h4>Demo Video</h4>
+            </div>
+            </div>
+      </body>
+  </html>
